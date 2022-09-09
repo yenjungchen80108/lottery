@@ -1,49 +1,33 @@
 {
     "NAV": {
-        "LANGUAGE": "Language",
-        "CONTACT": "Contact",
-        "MORE": "More",
-        "SIGN_IN": "Sign In",
-        "SIGN_UP": "Sign Up",
-        "THEME": "Theme",
-        "PROFILE": "Profile",
-        "SETTINGS": "Settings"
+        "TITLE": "Lottery App",
+        "LANGUAGE": "Switch Language"
     },
-    "SIDE": {
-        "NEW_INSTRUCTION": "Site Instruction",
-        "COMPANY_DONATION": "Company Donation",
-        "DONATE_SUPPORT": "Sponsorship",
-        "DIRECT_PURCHASE": "Direct Purchase",
-        "DEMAND_MATCH": "Demand Matching",
-        "COMMON_QUESTIONS": "Common Questions",
-        "LATEST_NEWS": "Latest News",
-        "STORY_SHARING": "Story Sharing",
-        "COOPERATE_PARTY": "Cooperate Partner",
-        "CONTACT_US": "Contact Us"
-    },
-    "COMMON": {
+    "TIMER": {
+        "TITLE": "Draw time",
+        "REMAIN": "Remain time",
+        "MINUTE": "Minute",
+        "SET": "Set",
+        "RESET": "Reset",
         "PLACEHOLDER": "Please Type..."
     },
-    "CONTACT": {
-        "TITLE": "Title",
-        "CONTENT": "Content",
-        "SUBMIT": "Submit"
+    "USER": {
+        "TITLE": "Participant Settings",
+        "MODAL_TITLE": "User Info",
+        "COLUMN": {
+            "NAME": "Name",
+            "PHONE": "Phone",
+            "AGE": "Age",
+            "EMAIL": "Email",
+            "IMG": "Avatar URL"
+        }
     },
-    "POST": {
-        "PUBLISH": "Publish",
-        "PUBLISHING": "Publishing",
-        "DELETE": "Delete",
-        "DELETING": "Deleting"
+    "COMMON": {
+        "ADD": "Add",
+        "EDIT": "Edit",
+        "SAVE": "Save"
     },
-    "LOGIN": {
-        "TITLE": "Log in to your account",
-        "EMAIL": "Email",
-        "PASSWORD": "Password",
-        "SUBMIT": "Start",
-        "FORGET_PW": "Forget Password"
-    },
-    "REGISTER": {
-        "TITLE": "Register",
-        "SUBMIT": "Start"
+    "MESSAGE": {
+        "DELETE": "Are you sure you want to delete?"
     }
 }
