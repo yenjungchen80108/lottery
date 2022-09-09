@@ -1,10 +1,8 @@
 import { LoadingDots } from '../LoadingDots';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 import styles from './Button.module.css';
 
-export const Button = forwardRef(function Button( // 把按鈕特定屬性傳給父層
-  {
+export const Button = function ({
     children,
     type,
     className,
@@ -13,9 +11,7 @@ export const Button = forwardRef(function Button( // 把按鈕特定屬性傳給
     variant = 'invert',
     loading,
     disabled,
-  },
-  ref
-) {
+  }) {
   return (
     <button
       className={clsx(
@@ -25,7 +21,6 @@ export const Button = forwardRef(function Button( // 把按鈕特定屬性傳給
         styles[variant],
         className
       )}
-      ref={ref}
       onClick={onClick}
       disabled={loading || disabled}
       type={type}
@@ -34,11 +29,10 @@ export const Button = forwardRef(function Button( // 把按鈕特定屬性傳給
       <span>{children}</span>
     </button>
   );
-});
+};
 
-export const ButtonLink = forwardRef(function Button(
-  { children, type, className, href, onClick, size, variant = 'invert' },
-  ref
+export const ButtonLink = function ({
+  children, type, className, href, onClick, size, variant = 'invert' },
 ) {
   return (
     <a
@@ -49,11 +43,9 @@ export const ButtonLink = forwardRef(function Button(
         variant && styles[variant],
         className
       )}
-      ref={ref}
       href={href}
       onClick={onClick}
-    >
-      <span>{children}</span>
+    ><span>{children}</span>
     </a>
   );
-});
+};

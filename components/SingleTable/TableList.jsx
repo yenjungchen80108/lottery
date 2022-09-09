@@ -1,8 +1,5 @@
-import clsx from 'clsx';
-import styles from './Table.module.css';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from "react-table";
-import { Label } from '../Label';
 import AddDialog from '../Dialog/AddDialog/AddDialog';
 import EditDialog from '../Dialog/EditDialog/EditDialog';
 import DeleteDialog from '../Dialog/DeleteDialog/DeleteDialog';
@@ -25,7 +22,7 @@ const classes = {
   // searchLabel: 'mt-2 mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300',
   searchIconOuter: 'flex absolute inset-y-0 left-0 items-center pt-4 pl-3 pointer-events-none',
   searchInput: 'block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black',
-  // searchBtn: 'text-white absolute right-2.5 bottom-2.5 bg-pink-400 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+  // searchBtn: 'text-white absolute right-2.5 bottom-2.5 bg-blue-400 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
 }
 
 function GlobalFilter({

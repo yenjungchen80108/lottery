@@ -1,17 +1,7 @@
-import { Avatar } from '../Avatar';
-import { Button, ButtonLink } from '../Button';
-import { ThemeSwitcher } from '../ThemeSwitcher';
-import { fetcher } from '../../lib/fetch';
-import { useCurrentUser } from '../../lib/user';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
 import Container from './Container';
 import styles from './Nav.module.css';
-import Spacer from './Spacer';
 import Wrapper from './Wrapper';
-import { Fragment } from 'react'
+import { useEffect, Fragment } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, GlobeIcon } from '@heroicons/react/solid';
@@ -34,94 +24,11 @@ const languages = [
   }
 ]
 
-const UserMenu = ({ user, mutate }) => {
-  const menuRef = useRef();
-  const avatarRef = useRef();
-  const { t } = useTranslation();
-  const [visible, setVisible] = useState(false);
-
-  const router = useRouter();
-  useEffect(() => {
-    const onRouteChangeComplete = () => setVisible(false);
-    router.events.on('routeChangeComplete', onRouteChangeComplete);
-    return () =>
-      router.events.off('routeChangeComplete', onRouteChangeComplete);
-  });
-
-  useEffect(() => {
-    // detect outside click to close menu
-    const onMouseDown = (event) => {
-      if (
-        !menuRef.current.contains(event.target) &&
-        !avatarRef.current.contains(event.target)
-      ) {
-        setVisible(false);
-      }
-    };
-    document.addEventListener('mousedown', onMouseDown);
-    return () => {
-      document.removeEventListener('mousedown', onMouseDown);
-    };
-  }, []);
-
-  const onSignOut = useCallback(async () => {
-    try {
-      await fetcher('/api/auth', {
-        method: 'DELETE',
-      });
-      toast.success('You have been signed out');
-      mutate({ user: null });
-    } catch (e) {
-      toast.error(e.message);
-    }
-  }, [mutate]);
-
-  return (
-    <div className={styles.user}>
-      <button
-        className={styles.trigger}
-        ref={avatarRef}
-        onClick={() => setVisible(!visible)}
-      >
-        <Avatar size={32} username={user.username} url={user.profilePicture} />
-      </button>
-      <div
-        ref={menuRef}
-        role="menu"
-        aria-hidden={visible}
-        className={styles.popover}
-      >
-        {visible && (
-          <div className={styles.menu}>
-            <Link passHref href={`/user/${user.username}`}>
-              <a className={styles.item}>{t('NAV.PROFILE')}</a>
-            </Link>
-            <Link passHref href="/settings">
-              <a className={styles.item}>{t('NAV.SETTINGS')}</a>
-            </Link>
-            <div className={styles.item} style={{ cursor: 'auto' }}>
-              <Container alignItems="center">
-                <span>{t('NAV.THEME')}</span>
-                <Spacer size={0.5} axis="horizontal" />
-                <ThemeSwitcher />
-              </Container>
-            </div>
-            <button onClick={onSignOut} className={styles.item}>
-              {t('NAV.SIGN_UP')}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 const Nav = () => {
-  const { data: { user } = {}, mutate } = useCurrentUser();
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
       i18n.changeLanguage(lng);
@@ -135,14 +42,12 @@ const Nav = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Link href="/feed" passHref className={styles.logo}>
-            {/* <a className={styles.logo}>Next.js MongoDB App</a> */}
-            {/* <a className={styles.logo}> */}
-              <img width={32} 
-              src="/favicon/give-love.png"
+          <div className={styles.logo}>
+            <img width={32} 
+              src="/favicon/lucky-draw.png"
               alt=""/>
-            {/* </a> */}
-          </Link>
+          </div>
+          <div>Lottery</div>
           <Popover className="relative">
             {({ open }) => (
               <>
@@ -194,32 +99,6 @@ const Nav = () => {
               </>
             )}
           </Popover>
-          <Container>
-            {user ? (
-              <>
-                <UserMenu user={user} mutate={mutate} />
-              </>
-            ) : (
-              <>
-                <Link passHref href="/login">
-                  <ButtonLink
-                    size="small"
-                    type="success"
-                    variant="ghost"
-                    color="link"
-                  >
-                    {t('NAV.SIGN_IN')}
-                  </ButtonLink>
-                </Link>
-                <Spacer axis="horizontal" size={0.25} />
-                <Link passHref href="/sign-up">
-                  <Button size="small" type="success">
-                    {t('NAV.SIGN_UP')}
-                  </Button>
-                </Link>
-              </>
-            )}
-          </Container>
         </Container>
       </Wrapper>
     </nav>

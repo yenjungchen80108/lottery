@@ -1,28 +1,21 @@
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 import styles from './Text.module.css';
 
-export const Text = forwardRef(function Text(
-  { color, children, className, as, ...props },
-  ref
-) {
+export const Text = function({ color, children, className, as, ...props }) {
   const Component = as || 'p';
   return (
     <Component
       style={color ? { '--color': `var(--${color})` } : undefined}
       className={clsx(styles.text, className)}
       {...props}
-      ref={ref}
     >
       {children}
     </Component>
   );
-});
+};
 
-export const TextLink = forwardRef(function Text(
-  { color, children, className, href, onClick, variant },
-  ref
-) {
+export const TextLink = function Text(
+  { color, children, className, href, onClick, variant }) {
   return (
     <a
       style={color ? { '--color': `var(--${color})` } : undefined}
@@ -33,10 +26,8 @@ export const TextLink = forwardRef(function Text(
         className
       )}
       href={href}
-      ref={ref}
       onClick={onClick}
     >
       {children}
     </a>
-  );
-});
+  )};

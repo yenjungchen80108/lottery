@@ -1,17 +1,15 @@
 import clsx from 'clsx';
-import styles from './Container.module.css';
-import { forwardRef } from 'react';
+import styles from './Layout.module.css';
 
-const Container = forwardRef(
-  function Container(
-    {
+const Container = 
+  function ({
       justifyContent,
       flex,
       alignItems,
       column,
       className,
       children,
-    }, ref
+    }
   ) {
   return (
     <div
@@ -21,11 +19,9 @@ const Container = forwardRef(
         flex,
         alignItems,
       }}
-      ref={ref}
-    >
-      {children}
+    >{children}
     </div>
   );
-});
+};
 
 export default Container;

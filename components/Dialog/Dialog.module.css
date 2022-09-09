@@ -13,6 +13,5 @@
 }
 
 .innerForm {
-    height: calc(100vh - 5em);
     overflow-x: auto;
 }

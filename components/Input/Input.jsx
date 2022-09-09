@@ -1,11 +1,7 @@
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 import styles from './Input.module.css';
-import { useCallback, useRef, useState, useMemo } from 'react';
 
-const Input = forwardRef(
-  function Input(
-  {
+const Input = function ({
     value,
     label,
     placeholder,
@@ -16,20 +12,7 @@ const Input = forwardRef(
     ariaLabel,
     required,
     onKeyDown
-  },
-  ref
-) {
-  // const [state, setState] = useState({
-  //   ...state || null
-  // });
-
-  // const handleInputChange = (e) => {
-  //   // state[e.target.name] = e.target.value;
-  //   let { name, value } = e.target;
-  //   // console.log('do run!', state, name, value);
-  //   setState({ ...state, [name]: value });
-  // };
-  
+  }) {
   return (
     <div className={clsx(styles.root, className)}>
       <label>
@@ -39,7 +22,6 @@ const Input = forwardRef(
           type={htmlType}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          ref={ref}
           className={clsx(styles.input, size && styles[size])}
           aria-label={ariaLabel}
           required={required}
@@ -48,6 +30,6 @@ const Input = forwardRef(
       </label>
     </div>
   );
-});
+};
 
 export default Input;
