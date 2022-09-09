@@ -92,11 +92,11 @@
     var(--lighten-color)
   );
 }
-
+/*
 [data-theme='dark'] .ghost {
   --lighten-color: rgba(0, 0, 0, 0.75);
 }
-
+*/
 .ghost:not([disabled]):hover {
   background-color: var(--themed-bg, var(--accents-4));
 }

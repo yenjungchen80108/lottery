@@ -27,7 +27,7 @@
   --link: var(--success);
   --nav-height: 48px;
 }
-
+/*
 [data-theme='dark'] {
   --foreground: #fff;
   --background: #000;
@@ -45,7 +45,7 @@
   --shadow-medium: 0 0 0 1px var(--accents-2);
   --shadow-large: 0 0 0 1px var(--accents-2);
 }
-
+*/
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
