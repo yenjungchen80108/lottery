@@ -1,0 +1,25 @@
+.root {
+    display: flex;
+    padding: 32px;
+    margin: 10px;
+    box-shadow: var(--shadow-smallest);
+    border-radius: 8px;
+    width: 300px;
+    transition: ease 0.2s box-shadow;
+  }
+  
+.root:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+.input {
+    flex: 1 1 50%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

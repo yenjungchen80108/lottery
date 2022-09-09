@@ -1,6 +1,5 @@
-// import Hero from './Hero';
-import { Feed } from '../Feed/index';
+import { Lottery } from './Lottery';
 
 export const Index = () => {
-  return <Feed />;
+  return <Lottery />;
 };
