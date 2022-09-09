@@ -1,6 +1,6 @@
-import { passport } from '../auth';
+// import { passport } from '../auth';
 import session from './session';
 
-const auths = [session, passport.initialize(), passport.session()];
+const auths = [session];
 
 export default auths;

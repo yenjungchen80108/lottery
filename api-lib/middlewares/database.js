@@ -12,27 +12,8 @@ let indexesCreated = false;
 async function createIndexes(db) {
   await Promise.all([
     db
-      .collection('tokens')
-      .createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
-    db
-      .collection('posts')
-      .createIndexes([{ key: { createdAt: -1 } }, { key: { creatorId: -1 } }]),
-    db
-      .collection('cards')
+      .collection('fakeUsers')
       .createIndexes([{ key: { createdAt: -1 } }, { key: { _id: 1 } }]),
-    db
-      .collection('partners')
-      .createIndexes([{ key: { createdAt: -1 } }, { key: { partnerId: -1 } }]),
-    db
-      .collection('donateItems')
-      .createIndexes([{ key: { createdAt: -1 } }, { key: { _id: 1 } }]),
-    db
-      .collection('comments')
-      .createIndexes([{ key: { createdAt: -1 } }, { key: { postId: -1 } }]),
-    db.collection('users').createIndexes([
-      { key: { email: 1 }, unique: true },
-      { key: { username: 1 }, unique: true },
-    ]),
   ]);
   indexesCreated = true;
 }
