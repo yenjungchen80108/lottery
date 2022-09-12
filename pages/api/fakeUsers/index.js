@@ -33,10 +33,6 @@ handler.post(
     additionalProperties: true,
   }),
   async (req, res) => {
-    // if (!req.user) {
-    //   return res.status(401).end();
-    // }
-
     const fakeUser = await insertFakeUser(req.db, {
       name: req.body.name,
       phone: req.body.phone,
@@ -62,11 +58,6 @@ handler.patch(
     }
   }),
   async (req, res) => {
-    // if (!req.user) {
-    //   req.status(401).end();
-    //   return;
-    // }
-
     const { _id, name, phone, email, age, img } = req.body;
     const fakeUsers = await updateFakeUserById(req.db, _id, {  name, phone, email, age, img });
 
@@ -77,11 +68,6 @@ handler.patch(
 handler.delete(
   ...auths,
   async (req, res) => {
-    // if (!req.user) {
-    //   req.status(401).end();
-    //   return;
-    // }
-
     const { _id } = req.body;
     const fakeUsers = await deleteFakeUserById(req.db, _id);
 

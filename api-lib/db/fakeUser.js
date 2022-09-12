@@ -1,8 +1,6 @@
 import { ObjectId } from 'mongodb';
-// import { dbProjectionUsers } from './user';
 
 export async function findFakeUserById(db, id) {
-  // console.log('db-id', id);
   const fakeUsers = await db
     .collection('fakeUsers')
     .aggregate([
