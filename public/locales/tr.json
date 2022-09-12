@@ -7,7 +7,9 @@
         "TITLE": "抽獎時間",
         "REMAIN": "剩餘時間",
         "MINUTE": "分鐘",
-        "SET": "設定",
+        "SET": "開始",
+        "PAUSE": "暫停",
+        "CONTINUE": "繼續",
         "RESET": "重設",
         "PLACEHOLDER": "請輸入..."
     },
@@ -21,6 +23,10 @@
             "EMAIL": "信箱",
             "IMG": "大頭照URL"
         }
+    },
+    "RESULT": {
+        "TITLE": "抽獎結果",
+        "MSG": "恭喜中獎！"
     },
     "COMMON": {
         "ADD": "新增",

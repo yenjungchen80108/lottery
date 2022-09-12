@@ -7,7 +7,9 @@
         "TITLE": "Draw time",
         "REMAIN": "Remain time",
         "MINUTE": "Minute",
-        "SET": "Set",
+        "SET": "Start",
+        "PAUSE": "Pause",
+        "CONTINUE": "Continue",
         "RESET": "Reset",
         "PLACEHOLDER": "Please Type..."
     },
@@ -21,6 +23,10 @@
             "EMAIL": "Email",
             "IMG": "Avatar URL"
         }
+    },
+    "RESULT": {
+        "TITLE": "Result of lucky draw",
+        "MSG": "Congratulations!"
     },
     "COMMON": {
         "ADD": "Add",
