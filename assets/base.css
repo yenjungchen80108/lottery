@@ -2,7 +2,7 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 
 :root {
-  --background: #fff;
+  --background: rgb(228, 246, 255);
   --foreground: #000;
   --accents-1: #fafafa;
   --accents-2: #eaeaea;
