@@ -84,10 +84,7 @@ const TableList = (props) => {
   const [ rowData, setRowData ] = useState(initVal);
   const filterTypes = useMemo(
     () => ({
-      // Add a new fuzzyTextFilterFn filter type.
       fuzzyText: fuzzyTextFilterFn,
-      // Or, override the default text filter to use
-      // "startWith"
       text: (rows, id, filterValue) => {
         return rows.filter(row => {
           const rowValue = row.values[id]
@@ -125,7 +122,6 @@ const TableList = (props) => {
 
   const defaultColumn = useMemo(
     () => ({
-      // Let's set up our default Filter UI
       Filter: DefaultColumnFilter,
     }),
     []
@@ -134,7 +130,7 @@ const TableList = (props) => {
   const tableInstance = useTable({
     columns,
     data: fields,
-    defaultColumn, // Be sure to pass the defaultColumn option
+    defaultColumn,
     filterTypes,
   }, useFilters,
   useGlobalFilter);
@@ -163,7 +159,6 @@ const TableList = (props) => {
             </button>
             <br/>
             <GlobalFilter
-              // preGlobalFilteredRows={preGlobalFilteredRows}
               globalFilter={state.globalFilter}
               setGlobalFilter={setGlobalFilter}
             />

@@ -2,8 +2,10 @@ import clsx from 'clsx';
 import styles from './Input.module.css';
 
 const Input = function ({
+    name,
     value,
     label,
+    ref,
     placeholder,
     className,
     htmlType,
@@ -11,14 +13,17 @@ const Input = function ({
     size,
     ariaLabel,
     required,
-    onKeyDown
+    onKeyDown,
+    onChange
   }) {
   return (
     <div className={clsx(styles.root, className)}>
       <label>
         {label && <div className={styles.label}>{label}</div>}
         <input
+          name={name}
           value={value}
+          ref={ref}
           type={htmlType}
           autoComplete={autoComplete}
           placeholder={placeholder}
@@ -26,6 +31,7 @@ const Input = function ({
           aria-label={ariaLabel}
           required={required}
           onKeyDown={onKeyDown}
+          onChange={onChange}
         />
       </label>
     </div>

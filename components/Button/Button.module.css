@@ -36,7 +36,7 @@
 /** Type **/
 
 .secondary {
-  --themed-bg: var(--background);
+  --themed-bg: #fff;
   --themed-fg: var(--secondary);
   --themed-border: var(--accents-2);
 }

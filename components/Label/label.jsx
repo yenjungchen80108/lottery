@@ -6,11 +6,6 @@ import styles from './label.module.css';
 import Wrapper from '../Layout/Wrapper';
 import { Toggle } from './Toggle';
 
-const classes = {
-  inlineTag: "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2",
-  searchBtn: 'h-auto text-white absolute right-2.5 bottom-1.5 bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-gray-300 font-small rounded-lg text-sm px-4 py-2'
-}
-
 const Label = ((props) => {
     
     let elementToRender;

@@ -12,4 +12,5 @@ export const Board = styled.div`
     overflow: auto; /* Enable scroll if needed */
     border-radius: 8px;
     box-shadow: var(--shadow-smallest);
+    background: #fff;
 `;
