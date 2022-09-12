@@ -4,13 +4,13 @@ import { Board } from '../../components/Board';
 import AddFakeUserForm from '../../page-components/FakeUser/AddFakeUserForm'
 import styles from './Lottery.module.css';
 
-export const Lottery = () => {
+export function Lottery() {
   return (
     <Board>
       <div className={styles.layout}>
         <div className={styles.innerRow}>
-          <Timer />
-          <RemainTime />
+            <Timer />
+            <RemainTime />
         </div>
         <AddFakeUserForm />
       </div>

@@ -1,5 +1,5 @@
 .root {
-    background: var(--background);
+    /* background: var(--background); */
     padding-bottom: 15px;
     /* box-shadow: var(--shadow-smallest); */
     border-radius: 8px;
@@ -14,7 +14,7 @@
     border: 1px solid var(--accents-2);
     border-radius: 5px;
     padding: 0px 12px;
-    background: var(--background);
+    /* background: var(--background); */
     color: var(--foreground);
     height: 40px;
     transition: border-color 0.15s ease;
