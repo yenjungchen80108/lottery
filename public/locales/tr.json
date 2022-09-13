@@ -31,7 +31,9 @@
     "COMMON": {
         "ADD": "新增",
         "EDIT": "編輯",
-        "SAVE": "儲存"
+        "SAVE": "儲存",
+        "YES": "是",
+        "NO": "否"
     },
     "MESSAGE": {
         "DELETE": "確定刪除？"

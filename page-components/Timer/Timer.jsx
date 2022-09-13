@@ -5,7 +5,6 @@ import { useCallback, useRef, useState, useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Timer.module.css';
 import { useTranslation } from 'react-i18next';
-import { lotteryContext } from '../Index/Lottery';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setTimer } from '../Timer/timerSlice';
 import { useInterval } from './useInterval';
