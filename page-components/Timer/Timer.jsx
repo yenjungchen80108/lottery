@@ -2,13 +2,13 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Container, Spacer } from '../../components/Layout';
 import { useCallback, useRef, useState, useContext, useEffect } from 'react';
-import toast from 'react-hot-toast';
 import styles from './Timer.module.css';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setTimer } from '../Timer/timerSlice';
 import { useInterval } from './useInterval';
 import { ResultModal } from '../ResultModal/ResultModal';
+import Snowfall from 'react-snowfall';
 
 export function Timer() {
   const ref = useRef('0');
@@ -17,8 +17,7 @@ export function Timer() {
   const [time, setTime] = useState(0);
   const [remainSeconds, setRemainSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const count = useAppSelector((state) => state.count.countState)
-
+  const count = useAppSelector((state) => state.count.countState);
   const setCount = (e) => {
     e.preventDefault();
     setIsRunning(true);
@@ -29,7 +28,7 @@ export function Timer() {
   const pauseCount = (e) => {
     e.preventDefault();
     setIsRunning(!isRunning);
-    dispatch(setTimer({ status: 'pause' }))
+    dispatch(setTimer({ status: isRunning === false ? 'continue' : 'pause' }))
   }
 
   const resetCount = (e) => {
@@ -62,7 +61,6 @@ export function Timer() {
   };
 
   useInterval(() => {
-    setRemainSeconds(parseInt(time) * 60);
     handleTick();
   }, isRunning ? 1000 : null)
 
@@ -115,6 +113,9 @@ export function Timer() {
       </Container>
       </form>
     </div>
-    {count.showModal ? (<ResultModal />) : <></>}
+    {count.showModal ? (<>
+      <ResultModal />
+      <Snowfall />
+      </>) : <></>}
   </>);
 };
