@@ -12,7 +12,7 @@ export async function findFakeUserById(db, id) {
   return fakeUsers[0];
 }
 
-export async function findFakeUsers(db, before, by, limit = 5) {
+export async function findFakeUsers(db, before, by, limit = 10) {
   return db
     .collection('fakeUsers')
     .aggregate([
@@ -22,7 +22,7 @@ export async function findFakeUsers(db, before, by, limit = 5) {
           ...(before && { createdAt: { $lt: before } }),
         },
       },
-      { $sort: { _id: -1 } },
+      { $sort: { _id: 1 } },
       { $limit: limit },
     ])
     .toArray();

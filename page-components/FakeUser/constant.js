@@ -11,10 +11,10 @@ export const columns = [
       Header: "Age",
       accessor: "age",
       Cell: (props) => {
+        const range = [20,40,60,80,100];
+        let interval = binarySearch(range, props.value);
         return (
-          <span style={{ 
-            backgroundColor: "#3DB3FF", color: "#fff",
-            borderRadius: 5, display: 'block' }}>
+          <span className={interval}>
             {props.value}
           </span>
         );
@@ -23,5 +23,24 @@ export const columns = [
     {
       Header: "Email",
       accessor: "email",
-    }
+    },
 ];
+
+function binarySearch(arr,n) {
+  let min = 0;
+  let max = arr.length - 1;
+  let mid;
+
+  while (min <= max) {
+    mid = Math.floor((min + max) / 2);
+    if (arr[mid] === n) {
+      return mid + 1;
+    } else if (arr[mid] < n) {
+      min = mid + 1;
+    } else {
+      max = mid - 1;
+    }
+  }
+
+  return `age--${min}`;
+}

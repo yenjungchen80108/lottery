@@ -10,7 +10,7 @@ const EditDialog = (props) => {
     <>
       <Modal
         onClose={onClose}
-        title={t('COMMON.EDIT') + `${name}`}>
+        title={t('COMMON.EDIT') + ` ${name}`}>
         <form
           onSubmit={(e) => onSubmit(e, 'edit')}
           className="shadow-md rounded px-8 pt-6 pb-8 w-full"

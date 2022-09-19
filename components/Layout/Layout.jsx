@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
       </Head>
       <Nav />
       <div className={styles.outerContainer}>
-          <main className={styles.content}>
+          <main>
             {children}
           </main>
       </div>

@@ -1,10 +1,10 @@
 .root {
-    display: flex;
     padding: 32px;
     margin: 10px;
     box-shadow: var(--shadow-smallest);
     border-radius: 8px;
     width: 300px;
+    max-width: 100%;
     transition: ease 0.2s box-shadow;
   }
   
@@ -18,8 +18,29 @@
     margin-right: 8px;
 }
 
+.invalid {
+    display: inline-block;
+    color: red;
+    margin: 4px 8px;
+    font-size: 10px;
+}
+
 .timer {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.btnContainer {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .btnContainer {
+        flex-direction: column;
+    }
+
+    .root {
+        width: 100%;
+    }
 }

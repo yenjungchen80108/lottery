@@ -11,12 +11,13 @@ import { ResultModal } from '../ResultModal/ResultModal';
 import Snowfall from 'react-snowfall';
 
 export function Timer() {
-  const ref = useRef('0');
+  const ref = useRef('1');
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [time, setTime] = useState(0);
   const [remainSeconds, setRemainSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [isValidNum, setIsValidNum] = useState(false);
   const count = useAppSelector((state) => state.count.countState);
   const setCount = (e) => {
     e.preventDefault();
@@ -35,15 +36,33 @@ export function Timer() {
     e.preventDefault();
     setRemainSeconds(0)
     setIsRunning(false);
-    dispatch(setTimer({ minutes: '0', seconds: '00', status: 'reset' }))
+    dispatch(setTimer({ minutes: '0', seconds: '00', status: '' }))
     ref.current.reset();
   }
 
+  // const validNumber = (val) => {
+  //   const reg = /^[0-9\b]+$/;
+  //   return reg.test(val);
+  // }
+  
   const handleChange = (e) => {
     e.preventDefault();
+    let inputNum = +e.target.value;
+    setIsValidNum(inputNum > 60 || inputNum == 0);
     setTime(e.target.value);
-    dispatch(setTimer({ minutes: !e.target.value ? '0' : e.target.value,
-    status: 'setTime' }))
+    dispatch(setTimer({ minutes: !e.target.value ? '1' : e.target.value }));
+  }
+
+  const formatNumber = (e) => {
+    let checkIfNum;
+    let key = ['e', '.', '+', '-'];
+    let keyCode = [69, 187, 189, 190]
+    if (e.key !== undefined) {
+      checkIfNum = key.includes(e.key);
+    } else if (e.keyCode !== undefined) {
+      checkIfNum = keyCode.includes(e.keyCode);
+    }
+    return checkIfNum && e.preventDefault();
   }
 
   const handleTick = () => {
@@ -76,36 +95,40 @@ export function Timer() {
           <Spacer size={0.5} axis="vertical" />
           <div className="flex">
           <Input
-            defaultValue="0"
+            defaultValue="1"
             name="time"
             className={styles.input}
-            placeholder="0"
-            ariaLabel="0"
+            placeholder="1"
+            ariaLabel="1"
             onChange={handleChange}
+            onKeyDown={formatNumber}
             htmlType="number"
           /><span className="pt-2">
             {t('TIMER.MINUTE')}
-          </span></div>
+          </span><br/>
+          </div>
+          {isValidNum &&<div
+            className={styles.invalid}
+          >{t('MESSAGE.INVALID_NUM')}</div>}
         </div>
         <br />
-        <div className="flex">
+        <div className={styles.btnContainer}>
           <Button type="success"
             onClick={setCount}
-            disabled={!time}
+            disabled={isValidNum}
           >
             {t('TIMER.SET')}
           </Button>
-          <Spacer size={1} axis="horizontal" />
+          <Spacer size={0.5} axis="horizontal" />
           <Button type="secondary"
             onClick={pauseCount}
-            disabled={!time}
+            disabled={isValidNum}
           >
             { isRunning === false ? t('TIMER.CONTINUE') : t('TIMER.PAUSE') }
           </Button>
-          <Spacer size={1} axis="horizontal" />
+          <Spacer size={0.5} axis="horizontal" />
           <Button type="secondary"
             onClick={resetCount}
-            disabled={!time}
           >
             {t('TIMER.RESET')}
           </Button>

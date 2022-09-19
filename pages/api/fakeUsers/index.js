@@ -13,7 +13,7 @@ handler.get(async (req, res) => {
     req.db,
     req.query.before ? new Date(req.query.before) : undefined,
     req.query.by,
-    req.query.limit ? parseInt(5, 10) : undefined
+    req.query.limit ? parseInt(10, 10) : undefined
   );
 
   res.json({ fakeUsers });

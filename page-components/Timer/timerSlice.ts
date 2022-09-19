@@ -10,8 +10,8 @@ export type CountState = {
 
 const initCountState: CountState = {
     seconds: '00',
-    minutes: '0',
-    status: 'pause',
+    minutes: '1',
+    status: '',
     showModal: false
 };
 

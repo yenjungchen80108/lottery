@@ -11,12 +11,13 @@ const RemainTimeInner = () => {
 
   return (
     <Container className={styles.timer}>
-      <div>
         <h3>{t('TIMER.REMAIN')}</h3>
         <Spacer size={0.5} axis="vertical" />
-        <h1 style={{ fontSize: 90 }}>
-          {count.minutes}:{count.seconds}</h1>
-      </div>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>
+            {count.minutes}:{count.seconds}
+          </h1>
+        </div>
     </Container>
   );
 };

@@ -1,12 +1,15 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback, useImperativeHandle, forwardRef } from 'react';
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from "react-table";
+import { Spacer } from '../Layout';
 import AddDialog from '../Dialog/AddDialog/AddDialog';
 import EditDialog from '../Dialog/EditDialog/EditDialog';
 import DeleteDialog from '../Dialog/DeleteDialog/DeleteDialog';
 import AddForm from '../../public/svg/addForm.svg';
 import EditForm from '../../public/svg/editForm.svg';
 import DeleteForm from '../../public/svg/deleteForm.svg';
-import SearchIcon from '../../public/svg/searchIcon.svg'
+import SearchIcon from '../../public/svg/searchIcon.svg';
+import styles from './Table.module.css';
+import clsx from 'clsx';
 
 const classes = {
   cardOuter: 'shadow-md rounded px-8 pt-6 pb-8',
@@ -18,13 +21,13 @@ const classes = {
   tableRow: 'text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap',
   tableRowFst: 'px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900',
   urlLink: 'no-underline hover:underline',
-  iconTableRow: 'text-sm text-gray-900 font-light py-4 whitespace-nowrap',
+  iconTableRow: 'text-sm text-gray-900 font-light pt-2 whitespace-nowrap',
   // searchLabel: 'mt-2 mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300',
-  searchIconOuter: 'flex absolute inset-y-0 left-0 items-center pt-4 pl-3 pointer-events-none',
+  searchIconOuter: 'flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none',
   searchInput: 'block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black',
   // searchBtn: 'text-white absolute right-2.5 bottom-2.5 bg-blue-400 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
 }
-
+ 
 function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
@@ -76,8 +79,8 @@ function fuzzyTextFilterFn(rows, id, filterValue) {
 // Let the table remove the filter if the string is empty
 fuzzyTextFilterFn.autoRemove = val => !val
 
-const TableList = (props) => {
-  const { className, name, initVal, columns, fields, children, setValue, onSubmit, onDelete } = props;
+const TableList = forwardRef((props, ref) => {
+  const { className, name, initVal, columns, fields, children, setValue, onSubmit, onDelete, showAction } = props;
   const [ openAdd, setOpenAdd ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
   const [ openDelete, setOpenDelete ] = useState(false);
@@ -120,6 +123,14 @@ const TableList = (props) => {
     setOpenDelete(false);
   };
 
+  useImperativeHandle(ref, () => ({
+    handleClose() {
+      setOpenAdd(false);
+      setOpenEdit(false);
+      setOpenDelete(false);
+    }
+  }),[])
+
   const defaultColumn = useMemo(
     () => ({
       Filter: DefaultColumnFilter,
@@ -148,60 +159,62 @@ const TableList = (props) => {
   } = tableInstance;
 
   return (
-    <div className={classes.cardOuter}>
+    <div className={clsx(classes.cardOuter, styles.root)}>
       <div className="flex flex-col">
         <div className={classes.cardMargin}>
           <div className={classes.cardPadding}>
             <span>{name}</span>
-            <button className={classes.addBtn}
+            {showAction && <button className={classes.addBtn} 
               onClick={() => handleAdd()}>
               <AddForm />
-            </button>
-            <br/>
+            </button>}
+            <Spacer axis="vertical" size={1} />
             <GlobalFilter
               globalFilter={state.globalFilter}
               setGlobalFilter={setGlobalFilter}
             />
-            <table {...getTableProps()} className={classes.tableOuter}>
-              <thead className="border-b">
-                {headerGroups?.map((headerGroup, i) => (
-                  <tr {...headerGroup.getHeaderGroupProps()} key={i}>
-                    {headerGroup.headers?.map((column, id) => (
-                      <th {...column.getHeaderProps()} key={id}
-                      className={classes.tableHead}
-                      >{column.render("Header")}</th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()}>
-                {rows.map((row, i) => {
-                  prepareRow(row);
-                  return (
-                    <tr {...row.getRowProps()} key={i}
-                      className="border-b">
-                      {row.cells?.map((cell, id) => {
-                        return <td {...cell.getCellProps()}
-                        key={id} className={classes.tableRow}
-                        >{cell.render("Cell")}</td>
-                      })}
-                      <td>
-                        <button className={classes.iconTableRow}
-                          onClick={() => handleEdit(row.original)}>
-                          <EditForm />
-                        </button>
-                      </td>
-                      <td>
-                        <button className={classes.iconTableRow}
-                          onClick={() => handleDelete(row.original)}>
-                          <DeleteForm />
-                        </button>
-                      </td>
+            <div className={styles.tableWrap}>
+              <table {...getTableProps()} className={classes.tableOuter}>
+                <thead className="border-b">
+                  {headerGroups?.map((headerGroup, i) => (
+                    <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+                      {headerGroup.headers?.map((column, id) => (
+                       <th {...column.getHeaderProps()} key={id}
+                        className={classes.tableHead}
+                        >{column.render("Header")}</th>
+                      ))}
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                  {rows.map((row, i) => {
+                    prepareRow(row);
+                    return (
+                      <tr {...row.getRowProps()} key={i}
+                        className="border-b-2">
+                        {row.cells?.map((cell, id) => {
+                          return <td {...cell.getCellProps()}
+                          key={id} className={classes.tableRow}
+                          >{cell.render("Cell")}</td>
+                        })}
+                        <td>
+                          {showAction && <button className={classes.iconTableRow}
+                            onClick={() => handleEdit(row.original)}>
+                            <EditForm />
+                          </button>}
+                        </td>
+                        <td>
+                          {showAction && <button className={classes.iconTableRow}
+                            onClick={() => handleDelete(row.original)}>
+                            <DeleteForm />
+                          </button>}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         {openAdd ?
@@ -225,6 +238,6 @@ const TableList = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default TableList;

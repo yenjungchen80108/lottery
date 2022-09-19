@@ -11,6 +11,7 @@ import { Label } from '../../components/Label';
 import { SingleTableList } from '../../components/SingleTable';
 import { columns } from './constant';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 // common form for add, edit, delete mode
 export const FakeUserForm = (props) => {
@@ -61,6 +62,8 @@ export const FakeUserFormInner = () => {
   const { fakeUserData, isLoading, isError } = useFakeUsers();
   const { mutate } = useSWRConfig();
   const { t } = useTranslation();
+  const count = useAppSelector((state) => state.count.countState)
+  const closeRef = useRef();
 
   const onSubmit = async (e, mode) => {
     try {
@@ -71,14 +74,14 @@ export const FakeUserFormInner = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
-      toast.success('You have updated successfully');
+      toast.success(mode === 'add' ? 
+      t('MESSAGE.CREATE_SUCCESS') : t('MESSAGE.UPDATE_SUCCESS'));
       setValues(mode === 'add' ? init : values);
       mutate('/api/fakeUsers');
     } catch (e) {
-      toast.error(e.message);
+      toast.error(e.info.error.message);
     } finally {
-      // setShowModal(false);
-      // setIsLoading(false);
+      closeRef.current.handleClose();
     }
   };
 
@@ -86,7 +89,7 @@ export const FakeUserFormInner = () => {
     try {
       e.preventDefault();
       // delete item by id
-      await fetcher('/api/fakeUsers', {
+     await fetcher('/api/fakeUsers', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -95,12 +98,11 @@ export const FakeUserFormInner = () => {
       });
 
       mutate('/api/fakeUsers');
-      toast.success('Fake user has been deleted');
+      toast.success(t('MESSAGE.DELETE_SUCCESS'));
     } catch (e) {
-      toast.error(e.message);
+      toast.error(e.info.error.message);
     } finally {
-      // setShowModal(false);
-      // setIsLoading(false);
+      closeRef.current.handleClose();
   }
 };
 
@@ -117,6 +119,7 @@ export const FakeUserFormInner = () => {
         ) : fakeUserData.fakeUsers ? 
         (<>
           <SingleTableList
+            ref={closeRef}
             name={t('USER.TITLE')}
             initVal={init}
             columns={columns}
@@ -124,6 +127,7 @@ export const FakeUserFormInner = () => {
             setValue={setValues}
             onSubmit={onSubmit}
             onDelete={onDelete}
+            showAction={count.status === ''}
           ><FakeUserForm
             handleChange={handleChange}
             values={values}
@@ -137,9 +141,6 @@ export const FakeUserFormInner = () => {
 };
 
 const AddFakeUserForm = () => {
-    // const { data, error } = useCurrentUser();
-    // const loading = !data && !error;
-
     return (
       <div className={styles.root}>
         <FakeUserFormInner/>

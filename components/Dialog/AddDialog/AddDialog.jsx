@@ -14,7 +14,7 @@ const AddDialog = (props) => {
     <>
       <Modal
         onClose={onClose}
-        title={t('COMMON.ADD') + `${name}`}>
+        title={t('COMMON.ADD') + ` ${name}`}>
         <form
           onSubmit={(e) => onSubmit(e, 'add')}
           className={classes.addForm}
