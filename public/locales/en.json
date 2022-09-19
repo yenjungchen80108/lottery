@@ -36,6 +36,10 @@
         "NO": "No"
     },
     "MESSAGE": {
-        "DELETE": "Are you sure you want to delete?"
+        "DELETE": "Are you sure you want to delete?",
+        "CREATE_SUCCESS": "Create Successfully!",
+        "UPDATE_SUCCESS": "Update Successfully!",
+        "DELETE_SUCCESS": "Delete Successfully!",
+        "INVALID_NUM": "Input can't be greater than 60 or equal to 0"
     }
 }

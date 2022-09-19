@@ -36,6 +36,10 @@
         "NO": "否"
     },
     "MESSAGE": {
-        "DELETE": "确定删除？"
+        "DELETE": "确定删除？",
+        "CREATE_SUCCESS": "新增成功！",
+        "UPDATE_SUCCESS": "更新成功！",
+        "DELETE_SUCCESS": "删除成功！",
+        "INVALID_NUM": "秒数不能大于60或等于0"
     }
 }
