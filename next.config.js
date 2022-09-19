@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   reactStrictMode: true,
   swcMinify: false,
@@ -15,5 +17,8 @@ module.exports = {
   },
   compiler: {
     styledComponents: true
-  }
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 }
