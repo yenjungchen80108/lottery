@@ -79,7 +79,7 @@ function fuzzyTextFilterFn(rows, id, filterValue) {
 // Let the table remove the filter if the string is empty
 fuzzyTextFilterFn.autoRemove = val => !val
 
-const TableList = forwardRef((props, ref) => {
+const TableList = forwardRef(function TableList(props, ref) {
   const { className, name, initVal, columns, fields, children, setValue, onSubmit, onDelete, showAction } = props;
   const [ openAdd, setOpenAdd ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
