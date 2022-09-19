@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Spacer = ({ size, axis }) => {
   const width = axis === 'vertical' ? 1 : size * 24;
   const height = axis === 'horizontal' ? 1 : size * 24;
@@ -15,4 +17,4 @@ const Spacer = ({ size, axis }) => {
   );
 };
 
-export default Spacer;
+export default React.memo(Spacer);

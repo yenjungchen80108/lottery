@@ -1,5 +1,5 @@
-import { Timer } from '../Timer/Timer';
-import { RemainTime } from '../RemainTime/RemainTime';
+import Timer from '../Timer/Timer';
+import RemainTime from '../RemainTime/RemainTime';
 import { Board } from '../../components/Board';
 import AddFakeUserForm from '../../page-components/FakeUser/AddFakeUserForm'
 import styles from './Lottery.module.css';
@@ -17,3 +17,5 @@ export function Lottery() {
     </Board>
   );
 };
+
+export default Lottery;

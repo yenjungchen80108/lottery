@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import styles from './Input.module.css';
+import React from 'react';
 
 const Input = function ({
     name,
@@ -38,4 +39,4 @@ const Input = function ({
   );
 };
 
-export default Input;
+export default React.memo(Input);

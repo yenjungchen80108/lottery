@@ -1,6 +1,7 @@
 import { LoadingDots } from '../LoadingDots';
 import clsx from 'clsx';
 import styles from './Button.module.css';
+import React from 'react';
 
 export const Button = function ({
     children,
@@ -49,3 +50,5 @@ export const ButtonLink = function ({
     </a>
   );
 };
+
+export default React.memo(Button);

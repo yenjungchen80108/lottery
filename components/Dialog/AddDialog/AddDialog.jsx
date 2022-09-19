@@ -1,4 +1,5 @@
 import { Button } from '../../Button';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '../../Modal';
 
@@ -28,4 +29,4 @@ const AddDialog = (props) => {
   );
 };
 
-export default AddDialog;
+export default React.memo(AddDialog);

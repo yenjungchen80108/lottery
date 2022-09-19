@@ -1,5 +1,5 @@
 import { Container, Spacer } from '../../components/Layout';
-import { useCallback, useRef, useState, useContext } from 'react';
+import React, { useCallback, useRef, useState, useContext } from 'react';
 import toast from 'react-hot-toast';
 import styles from './RemainTime.module.css';
 import { useTranslation } from 'react-i18next';
@@ -22,8 +22,10 @@ const RemainTimeInner = () => {
   );
 };
 
-export const RemainTime = () => {
+const RemainTime = () => {
   return (<div className={styles.root}>
       <RemainTimeInner />
     </div>);
 };
+
+export default React.memo(RemainTime);

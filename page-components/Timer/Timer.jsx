@@ -1,7 +1,7 @@
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Container, Spacer } from '../../components/Layout';
-import { useCallback, useRef, useState, useContext, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useContext, useEffect } from 'react';
 import styles from './Timer.module.css';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -10,7 +10,7 @@ import { useInterval } from './useInterval';
 import { ResultModal } from '../ResultModal/ResultModal';
 import Snowfall from 'react-snowfall';
 
-export function Timer() {
+function Timer() {
   const ref = useRef('1');
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -79,6 +79,10 @@ export function Timer() {
     setRemainSeconds(remainSeconds-1);
   };
 
+  // useEffect(() => {
+  //   handleTick();
+  // })
+  
   useInterval(() => {
     handleTick();
   }, isRunning ? 1000 : null)
@@ -142,3 +146,5 @@ export function Timer() {
       </>) : <></>}
   </>);
 };
+
+export default React.memo(Timer);

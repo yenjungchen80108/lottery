@@ -1,4 +1,5 @@
-import Spacer from '../../../components/Layout/Spacer';
+import { Spacer } from '../../../components/Layout/Spacer';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '../../Modal';
 
@@ -36,4 +37,4 @@ const DeleteDialog = (props) => {
   );
 };
 
-export default DeleteDialog;
+export default React.memo(DeleteDialog);

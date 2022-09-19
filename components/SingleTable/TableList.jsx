@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback, useImperativeHandle, forwardRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback, useImperativeHandle, forwardRef } from 'react';
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from "react-table";
 import { Spacer } from '../Layout';
 import AddDialog from '../Dialog/AddDialog/AddDialog';
@@ -47,7 +47,7 @@ function GlobalFilter({
               <SearchIcon/>
           </div>
           <input type="search" id="search" className={classes.searchInput}
-          placeholder="Search" value={value || ""}
+          placeholder="Search" value={value || ''}
           onChange={e => {
             setValue(e.target.value);
             onChange(e.target.value);
@@ -102,20 +102,20 @@ const TableList = forwardRef(function TableList(props, ref) {
     []
   )
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     setOpenAdd(true);
     setValue(initVal);
-  };
+  }, [openAdd]);
 
-  const handleEdit = (row) => {
+  const handleEdit = useCallback((row) => {
     setOpenEdit(true);
     setValue(row);
-  };
+  }, [openEdit]);
 
-  const handleDelete = (row) => {
+  const handleDelete = useCallback((row) => {
     setRowData(row);
     setOpenDelete(true);
-  };
+  }, [openDelete]);
 
   const handleClose = () => {
     setOpenAdd(false);

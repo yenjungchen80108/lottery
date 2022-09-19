@@ -1,4 +1,5 @@
 import { Button } from '../../Button';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '../../Modal';
 
@@ -24,4 +25,4 @@ const EditDialog = (props) => {
   );
 };
 
-export default EditDialog;
+export default React.memo(EditDialog);

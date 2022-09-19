@@ -1,7 +1,7 @@
 import Container from './Container';
 import styles from './Nav.module.css';
 import Wrapper from './Wrapper';
-import { useEffect, Fragment } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, GlobeIcon } from '@heroicons/react/solid';
@@ -43,7 +43,7 @@ const Nav = () => {
           justifyContent="space-between"
         >
           <div className={styles.logo}>
-            <img width={32} 
+            <img width={32} height={32}
               src="/favicon/lucky-draw.png"
               alt=""/>
           </div>

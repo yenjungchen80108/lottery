@@ -1,3 +1,5 @@
+import React, { useMemo, useCallback } from 'react';
+
 export const columns = [
     {
       Header: "Name",
@@ -13,6 +15,7 @@ export const columns = [
       Cell: (props) => {
         const range = [20,40,60,80,100];
         let interval = binarySearch(range, props.value);
+
         return (
           <span className={interval}>
             {props.value}

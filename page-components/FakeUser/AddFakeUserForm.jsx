@@ -50,7 +50,7 @@ export const FakeUserForm = (props) => {
   )
 }
 
-export const FakeUserFormInner = () => {
+export const AddFakeUserForm = () => {
   const init = {
     name: '',
     phone: '',
@@ -111,41 +111,35 @@ export const FakeUserFormInner = () => {
   }
 
     return (
-      <Wrapper>
-        <div>
-        <Spacer axis="vertical" size={1} />
-        {isLoading ? (
-        <LoadingDots>Loading</LoadingDots>
-        ) : fakeUserData.fakeUsers ? 
-        (<>
-          <SingleTableList
-            ref={closeRef}
-            name={t('USER.TITLE')}
-            initVal={init}
-            columns={columns}
-            fields={fakeUserData.fakeUsers}
-            setValue={setValues}
-            onSubmit={onSubmit}
-            onDelete={onDelete}
-            showAction={count.status === ''}
-          ><FakeUserForm
-            handleChange={handleChange}
-            values={values}
-          ></FakeUserForm>
-          </SingleTableList>
-        </>)
-        : (<span>no data</span>)}
-      </div>
-    </Wrapper>
+      <div className={styles.root}>
+        <Wrapper>
+          <div>
+          <Spacer axis="vertical" size={1} />
+          {isLoading ? (
+          <LoadingDots>Loading</LoadingDots>
+          ) : fakeUserData.fakeUsers ? 
+          (<>
+            <SingleTableList
+              ref={closeRef}
+              name={t('USER.TITLE')}
+              initVal={init}
+              columns={columns}
+              fields={fakeUserData.fakeUsers}
+              setValue={setValues}
+              onSubmit={onSubmit}
+              onDelete={onDelete}
+              showAction={count.status === ''}
+            ><FakeUserForm
+              handleChange={handleChange}
+              values={values}
+            ></FakeUserForm>
+            </SingleTableList>
+          </>)
+          : (<span>no data</span>)}
+        </div>
+      </Wrapper>
+    </div>
     );
 };
 
-const AddFakeUserForm = () => {
-    return (
-      <div className={styles.root}>
-        <FakeUserFormInner/>
-      </div>
-    );
-  };
-
-export default withRouter(AddFakeUserForm);
+export default React.memo(AddFakeUserForm);
