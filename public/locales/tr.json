@@ -31,6 +31,7 @@
     "COMMON": {
         "ADD": "新增",
         "EDIT": "編輯",
+        "DELETE": "刪除",
         "SAVE": "儲存",
         "YES": "是",
         "NO": "否"
