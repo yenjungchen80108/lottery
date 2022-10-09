@@ -11,16 +11,18 @@ const classes = {
 
 const DeleteDialog = (props) => {
   const { t } = useTranslation();
-  const { onClose, onDelete, rowData } = props;
+  const { onClose, onDelete, rowData, name } = props;
 
-  return (<>
-      <Modal
-        onClose={onClose}>
+  return (
+    <>
+      <Modal 
+      onClose={onClose} 
+      title={t('COMMON.DELETE') + ` ${name}`}>
         <form
           onSubmit={(e) => onDelete(e, rowData)}
           className="shadow-md rounded px-8 pt-6 pb-8 w-full">
           <div>{t('MESSAGE.DELETE')}</div>
-          <Spacer size={0.5} axis="vertical" />
+          {/* <Spacer size={0.5} axis="vertical" /> */}
           <div className={classes.modalRowContainer}>
             <button className={classes.modalClose}
               type="button"
@@ -33,8 +35,8 @@ const DeleteDialog = (props) => {
           </div>
         </form>
       </Modal>
-  </>
+    </>
   );
 };
 
-export default React.memo(DeleteDialog);
+export default DeleteDialog;

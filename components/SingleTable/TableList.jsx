@@ -79,7 +79,7 @@ function fuzzyTextFilterFn(rows, id, filterValue) {
 // Let the table remove the filter if the string is empty
 fuzzyTextFilterFn.autoRemove = val => !val
 
-const TableList = forwardRef(function TableList(props, ref) {
+export const TableList = forwardRef((props, ref) => {
   const { className, name, initVal, columns, fields, children, setValue, onSubmit, onDelete, showAction } = props;
   const [ openAdd, setOpenAdd ] = useState(false);
   const [ openEdit, setOpenEdit ] = useState(false);
@@ -113,8 +113,8 @@ const TableList = forwardRef(function TableList(props, ref) {
   }, [openEdit]);
 
   const handleDelete = useCallback((row) => {
-    setRowData(row);
     setOpenDelete(true);
+    setRowData(row);
   }, [openDelete]);
 
   const handleClose = () => {
@@ -231,6 +231,7 @@ const TableList = forwardRef(function TableList(props, ref) {
         >{children}</EditDialog> : <></>}
         {openDelete ?
         <DeleteDialog
+          name={name}
           onClose={handleClose}
           onDelete={onDelete}
           rowData={rowData}
