@@ -14,7 +14,7 @@ export const columns = [
       accessor: "age",
       Cell: (props) => {
         const range = [20,40,60,80,100];
-        let interval = binarySearch(range, props.value);
+        let interval = binSearch(range, props.value);
 
         return (
           <span className={interval}>
@@ -29,7 +29,7 @@ export const columns = [
     },
 ];
 
-function binarySearch(arr,n) {
+function binSearch(arr,n) {
   let min = 0;
   let max = arr.length - 1;
   let mid;
